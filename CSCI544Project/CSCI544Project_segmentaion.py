@@ -6,9 +6,14 @@ import json
 import os
 from ThirdParty_langconv import *
 import stanfordnlp
+import pkuseg
 import re
 
 stopwords = [word.strip() for word in open('stopwords.txt', encoding = 'utf-8')]
+
+def pku_segmentation(sentence, tokenizer):
+    global stopwords
+    return [word for word in tokenizer.cut(sentence) if (len(word)>0 and word not in stopwords)]
 
 def character_segmentation(sentence):
     global stopwords
@@ -44,7 +49,8 @@ def process_input(input_file_path, output_dir):
     global stopwords
     cnt = 0
     input_file = open(input_file_path, 'r', encoding='UTF-8')
-    tokenizer = stanfordnlp.Pipeline(processors='tokenize,lemma', lang='zh')
+    stanford_tokenizer = stanfordnlp.Pipeline(processors='tokenize,lemma', lang='zh')
+    pku_tokenizer = pkuseg.pkuseg(model_name='web')
     for line in input_file:
         if cnt == 0:
             cnt += 1
@@ -70,9 +76,14 @@ def process_input(input_file_path, output_dir):
                 output_files[1].write(' ')
 
                 # stanfordnlp segmentation
-                stanford_seg = stanford_segmentation(text, tokenizer)
+                stanford_seg = stanford_segmentation(text, stanford_tokenizer)
                 output_files[2].write(' '.join(stanford_seg))
                 output_files[2].write(' ')
+                
+                # pkuseg segmentation
+                pku_seg = pku_segmentation(text, pku_tokenizer)
+                output_files[3].write(' '.join(pku_seg))
+                output_files[3].write(' ')
 
             [output_file.close() for output_file in output_files]
         
@@ -80,8 +91,8 @@ if __name__ == '__main__':
     print('input your part from 0 to 3')
     operator = sys.stdin.readline()
     operator = int(operator[0])
-    input_file_path = 'information'+str(operator)+'.tt'
-    output_dir = ['data'+str(operator), 'char_data' + str(operator), 'snlp_data' + str(operator)]
+    input_file_path = '../Movie_information.txt'
+    output_dir = ['jieba_data', 'char_data', 'snlp_data', 'pku_data']
     for dir in output_dir:
         if not os.path.exists(dir):
             os.mkdir(dir)
