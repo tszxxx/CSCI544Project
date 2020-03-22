@@ -9,7 +9,7 @@ import stanfordnlp
 import pkuseg
 import re
 
-stopwords = [word.strip() for word in open('stopwords.txt', encoding = 'utf-8')]
+stopwords = [word.strip() for word in open('../Original_Files/stopwords.txt', encoding='utf-8')]
 
 def pku_segmentation(sentence, tokenizer):
     global stopwords
@@ -49,7 +49,7 @@ def process_input(input_file_path, output_dir):
     global stopwords
     cnt = 0
     input_file = open(input_file_path, 'r', encoding='UTF-8')
-    stanford_tokenizer = stanfordnlp.Pipeline(processors='tokenize,lemma', lang='zh')
+    stanford_tokenizer = stanfordnlp.Pipeline(processors='tokenize,lemma', lang='zh', models_dir='/Users/hangjiezheng/Desktop/CSCI534')
     pku_tokenizer = pkuseg.pkuseg(model_name='web')
     for line in input_file:
         if cnt == 0:
@@ -88,15 +88,9 @@ def process_input(input_file_path, output_dir):
             [output_file.close() for output_file in output_files]
         
 if __name__ == '__main__':
-    print('input your part from 0 to 3')
-    operator = sys.stdin.readline()
-    operator = int(operator[0])
     input_file_path = '../Movie_information.txt'
-    output_dir = ['jieba_data', 'char_data', 'snlp_data', 'pku_data']
+    output_dir = ['../jieba_data', '../char_data', '../snlp_data', '../pku_data']
     for dir in output_dir:
         if not os.path.exists(dir):
             os.mkdir(dir)
-    # if not os.path.exists(output_dir):
-    #     os.mkdir(output_dir)
-
     process_input(input_file_path, output_dir)
