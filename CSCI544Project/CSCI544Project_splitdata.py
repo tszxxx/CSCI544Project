@@ -36,7 +36,7 @@ def fetchData(file_path, output_file):
                         isFound = True
                 if isFound is not True:
                     output_file.write(tmp['aka'][0] + '\t')
-            output_file.write(tmp['summary'].replace('\r', ' ').replace('\n','') + '\t')
+            output_file.write(tmp['summary'].replace('\r', ' ').replace('\n',' ').replace('  ', ' ') + '\t')
             output_file.write(tmp['casts'][0]['name'] + ',' + tmp['casts'][1]['name'] + ',' + tmp['casts'][2]['name'] + '\t')
             output_file.write(tmp['directors'][0]['name'] + '\t')
             output_file.write(tmp['writers'][0]['name'] + '\t')
