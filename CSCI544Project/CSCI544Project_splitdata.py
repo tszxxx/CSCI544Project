@@ -22,7 +22,8 @@ def fetchData(file_path, output_file):
     line = input_file.readline()
     tmp = json.loads(line)
     global zh_pattern, cnt
-    if len(tmp['trailer_urls']) > 0 and len(tmp['aka']) > 0 and len(tmp['directors']) > 0 and len(tmp['writers']) > 0 and len(tmp['casts']) > 2:
+    #if len(tmp['trailer_urls']) > 0 and len(tmp['aka']) > 0 and len(tmp['directors']) > 0 and len(tmp['writers']) > 0 and len(tmp['casts']) > 2:
+    if len(tmp['aka']) > 0 and len(tmp['directors']) > 0 and len(tmp['writers']) > 0 and len(tmp['casts']) > 2:
         if tmp['rating']['average'] > 0 and (tmp['rating']['average'] < 4 or tmp['rating']['average'] > 6):
             output_file.write(tmp['id'] + '\t')
             if zh_pattern.search(tmp['original_title']):
@@ -34,9 +35,13 @@ def fetchData(file_path, output_file):
             output_file.write(tmp['directors'][0]['name'] + '\t')
             output_file.write(tmp['writers'][0]['name'] + '\t')
             output_file.write(str(tmp['rating']['average']) + '\t')
-            output_file.write(tmp['trailer_urls'][0] + '\n')
-            cnt += 1
-            print(cnt)
+            try:
+                output_file.write(tmp['trailer_urls'][0] + '\n')
+            except BaseException as e:
+                output_file.write(' ' + '\n')
+            finally:
+                cnt += 1
+                print(cnt)
 
 if __name__ == '__main__':
     dir = '../Raw_Information'
