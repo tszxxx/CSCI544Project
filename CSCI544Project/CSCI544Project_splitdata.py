@@ -34,6 +34,7 @@ def fetchData(file_path, output_file):
                     if zh_pattern.search(title):
                         output_file.write(title + '\t')
                         isFound = True
+                        break
                 if isFound is not True:
                     output_file.write(tmp['aka'][0] + '\t')
             output_file.write(tmp['summary'].replace('\r', ' ').replace('\n',' ').replace('  ', ' ') + '\t')
