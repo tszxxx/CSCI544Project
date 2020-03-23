@@ -29,8 +29,14 @@ def fetchData(file_path, output_file):
             if zh_pattern.search(tmp['original_title']):
                 output_file.write(tmp['original_title'] + '\t')
             else:
-                output_file.write(tmp['aka'][0] + '\t')
-            output_file.write(tmp['summary'].replace('\n','') + '\t')
+                isFound = False
+                for title in tmp['aka']:
+                    if zh_pattern.search(title):
+                        output_file.write(title + '\t')
+                        isFound = True
+                if isFound is not True:
+                    output_file.write(tmp['aka'][0] + '\t')
+            output_file.write(tmp['summary'].replace('\r', ' ').replace('\n','') + '\t')
             output_file.write(tmp['casts'][0]['name'] + ',' + tmp['casts'][1]['name'] + ',' + tmp['casts'][2]['name'] + '\t')
             output_file.write(tmp['directors'][0]['name'] + '\t')
             output_file.write(tmp['writers'][0]['name'] + '\t')
