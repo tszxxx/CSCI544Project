@@ -33,12 +33,12 @@ def character_segmentation(sentence):
 def stanford_segmentation(sentence, tokenizer):
     global stopwords
     token_stanford = []
-
-    token_list = tokenizer(sentence)
-    for sent in token_list.sentences:
-        for word in sent.words:
-            if word.lemma not in stopwords and not re.search(r'[^\w\s\u4e00-\u9fa5]',word.lemma):
-                token_stanford.append(word.lemma)
+    if len(sentence):
+        token_list = tokenizer(sentence)
+        for sent in token_list.sentences:
+            for word in sent.words:
+                if word.lemma is not None and word.lemma not in stopwords and not re.search(r'[^\w\s\u4e00-\u9fa5]',word.lemma):
+                    token_stanford.append(word.lemma)
     return token_stanford
 
 def convert_simplified_Chinese(sentence):
