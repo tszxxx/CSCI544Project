@@ -8,6 +8,7 @@ from ThirdParty_langconv import *
 import stanfordnlp
 import pkuseg
 import re
+import csv
 
 stopwords = [word.strip() for word in open('../Original_Files/stopwords.txt', encoding='utf-8')]
 
@@ -49,14 +50,12 @@ def process_input(input_file_path, output_dir):
     global stopwords
     cnt = 0
     input_file = open(input_file_path, 'r', encoding='UTF-8')
+    spamreader = csv.reader(input_file, delimiter=',', quotechar='\"')
+
     stanford_tokenizer = stanfordnlp.Pipeline(processors='tokenize,lemma', lang='zh', models_dir='/Users/hangjiezheng/Desktop/CSCI534')
     pku_tokenizer = pkuseg.pkuseg(model_name='web')
-    for line in input_file:
-        if cnt == 0:
-            cnt += 1
-        else:
-            tokens = line.split('\t')
-
+    for tokens in spamreader:
+        if cnt > 0:
             output_file_path = [dir + '/' + tokens[6] + '-' + tokens[0] + '.txt' for dir in output_dir]
             output_files = [open(file_path, 'w', encoding='UTF-8') for file_path in output_file_path]
 
@@ -86,9 +85,11 @@ def process_input(input_file_path, output_dir):
                 output_files[3].write(' ')
 
             [output_file.close() for output_file in output_files]
+            print(cnt)
+        cnt += 1
         
 if __name__ == '__main__':
-    input_file_path = '../Movie_information.txt'
+    input_file_path = '../Movie_information.csv'
     output_dir = ['../jieba_data', '../char_data', '../snlp_data', '../pku_data']
     for dir in output_dir:
         if not os.path.exists(dir):
