@@ -1,6 +1,6 @@
 #Preprocessing
 ## In This Part, We Tried to Preprocess the Data from the First Part
-### Some Rules We Discussed Before
+### 1. Some Rules We Discussed Before
 
 > We tried to split data in out dataset by its id, title, summary, director, and other types of information to get a csv file to store them.
 
@@ -10,7 +10,7 @@
 
 `Movie_information.csv`
 
-### Problems that We Met
+### 2. Problems that We Met
 
 > We found that there are some records given by the API which could not satisfy our requirement, so we removed them from our dataset and then collected the others into different directories.
 
