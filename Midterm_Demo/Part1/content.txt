@@ -1,1 +1,0 @@
-At for the first part, we began with fetching all links that we need for this part. As you can see, we have manually downloaded about thousands of links of movies.
