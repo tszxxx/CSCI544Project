@@ -1,5 +1,5 @@
 # The first part
-## Build Our Own Dataset
+## Build the movie Dataset
 ### 1. we downloaded all links that we need for our project
 
 [Douban Link](https://movie.douban.com/)
@@ -9,7 +9,7 @@
 `res = re.search(r'href="https://movie.douban.com/subject/(\d+)/"', token)`
 
 
-> Here is one example of links from the html results:
+> Here is one example of links from the fetch results:
 
 `<div data-v-3e982be2="" class="list-wp"><a data-v-2c455d87="" data-v-3e982be2="" target="_blank" href="https://movie.douban.com/subject/1291543/" class="item">`
 
