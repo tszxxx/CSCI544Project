@@ -2,7 +2,7 @@
 ## Build the movie Dataset
 ### 1. we downloaded all links that we need for our project
 
-[Douban Link](https://movie.douban.com/)
+[movie.douban](https://movie.douban.com/)
 
 > Here is the regular expression of our preprocessing procedure:
 
