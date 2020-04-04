@@ -12,11 +12,9 @@
 
 `res = re.search(r'href="https://movie.douban.com/subject/(\d+)/"', token)`
 
-> Here is one sample Link: [Douban Link with ID = 1291543](https://movie.douban.com/subject/1291543/)
-
 > Using this line of code, we could use regular expression to fetch the links that we need for the next step:
 
-`https://movie.douban.com/subject/1291543/`
+https://movie.douban.com/subject/1291543/
 
 ### Then, we used these links to fetch further
 
