@@ -4,17 +4,17 @@
 
 [Douban Link](https://movie.douban.com/)
 
-> Here is the example of our preprocessing procedure:
+> Here is the regular expression of our preprocessing procedure:
 
 `res = re.search(r'href="https://movie.douban.com/subject/(\d+)/"', token)`
 
 
-> Here is one example of links that we got before:
+> Here is one example of links from the html results:
 
 `<div data-v-3e982be2="" class="list-wp"><a data-v-2c455d87="" data-v-3e982be2="" target="_blank" href="https://movie.douban.com/subject/1291543/" class="item">`
 
 
-> Using this line of code, we could use regular expression to fetch the links that we need for the next step:
+> We could use regular expression to fetch the links that we need for the next step:
 
 https://movie.douban.com/subject/1291543/
 
