@@ -1,6 +1,6 @@
 # The first part
 ## Build Our Own Dataset
-### Download All Links That We Need for Our Project
+### First, we downloaded all links that we need for our project
 
 > Here is one example of links that we got before:
 
@@ -13,3 +13,11 @@
 > Using this line of code, we could use regular expression to fetch the links that we need for the next step:
 
 `https://movie.douban.com/subject/1291543/`
+
+### Then, we used these links to fetch further
+
+> We used the following API which was developped by others to fetch the information for the given subject id.
+
+`https://douban.uieee.com/v2/movie/subject/`
+
+> Then we uploaded all the data and built our own dataset.
