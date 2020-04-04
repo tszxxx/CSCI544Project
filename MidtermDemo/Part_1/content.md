@@ -22,6 +22,6 @@ https://movie.douban.com/subject/1291543/
 
 > We used the following API which was developped by others to fetch the information for the given subject id.
 
-`https://douban.uieee.com/v2/movie/subject/`
+`https://douban.uieee.com/v2/movie/subject/id`
 
 > Then we uploaded all the data and built our own dataset.
