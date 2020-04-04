@@ -1,6 +1,6 @@
 # The first part
 ## Build Our Own Dataset
-### First, we downloaded all links that we need for our project
+### 1. we downloaded all links that we need for our project
 
 [Douban Link](https://movie.douban.com/)
 
@@ -18,7 +18,7 @@
 
 https://movie.douban.com/subject/1291543/
 
-### Then, we used these links to fetch further
+### 2. we used these links to fetch further
 
 > We used the following API which was developped by others to fetch the information for the given subject id.
 
