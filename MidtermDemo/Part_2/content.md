@@ -1,5 +1,5 @@
 #Preprocessing
-## In This Part, We Tried to Preprocess the Data from the First Part
+## The 2nd Part: Preprocess the Data from the fetched html
 ### 1. Some Rules We Discussed Before
 
 > We seperated each entry in our dataset into categories of id, title, summary, director, and other types of information. 
