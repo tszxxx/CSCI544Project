@@ -1,30 +1,28 @@
-import json
 import os
-import sys
 import requests
+import csv
 
-def fetchMP4(file_path, dir):
-    file = open(file_path, 'r', encoding='UTF-8')
-    cnt = 0
-    for line in file:
-        if cnt == 0:
+def fetchMP4(input_file_path, output_file_dir):
+    output_file_dir += '/'
+    with open(input_file_path, 'r', encoding='UTF-8') as input_file:
+        spamreader = csv.reader(input_file, delimiter=',', quotechar='\"')
+        cnt = 0
+        for record in spamreader:
+            if cnt > 0:
+                if len(record[-1]) > 0:
+                    url = record[-1]
+                    id = record[0]
+                    response = requests.get(url)
+                    output_file = open(output_file_dir + id + '.mp4', 'wb')
+                    output_file.write(response.content)
+                    output_file.close()
+                print(cnt)
             cnt += 1
-        else:
-            tokens = line.split('\t')
-            url = tokens[-1]
-            id = tokens[0]
-            response = requests.get(url)
-            output_file = open(dir + '/' + id + '.mp4', 'wb')
-            output_file.write(response.content)
-            output_file.close()
 
 if __name__ == '__main__':
-    print('input your part from 0 to 3')
-    operator = sys.stdin.readline()
-    operator = int(operator[0])
-    dir = 'mp4'+str(operator)
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-    input_file_path = 'information'+str(operator)+'.tt'
-    fetchMP4(input_file_path, dir)
+    input_file_path = '../Movie_information.csv'
+    output_file_dir = '../Audio_Data'
+    if not os.path.exists(output_file_dir):
+        os.mkdir(output_file_dir)
+    fetchMP4(input_file_path, output_file_dir)
 
