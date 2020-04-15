@@ -114,6 +114,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+Audio_Data/
 
 # Spyder project settings
 .spyderproject
