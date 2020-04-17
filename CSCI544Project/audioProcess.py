@@ -164,7 +164,7 @@ def creatAudioDataSet():
 
 	for f in (f for f in listdir(audiopath) if isfile(join(audiopath,f))):
 		f_id = f.split('.')[0]
-		if(float(movie_rating[f_id]) >= 5):
+		if(float(movie_rating[f_id]) > 5):
 			shutil.copy(join(audiopath,f),highdir)
 		elif(float(movie_rating[f_id]) > 0):
 			shutil.copy(join(audiopath,f),lowdir)
@@ -213,10 +213,10 @@ def train():
 	
 
 if __name__ == '__main__':
-	#creatAudioDataSet()
-	#creatData()
+	creatAudioDataSet()
+	creatData()
 	#getFeatures('./tmp/high/11598977.mp4')
-	train()
+	#train()
 
 
 
