@@ -121,7 +121,7 @@ def creatData():
 	header += ' label'
 	header = header.split()
 	
-	file = open('audiodata.csv', 'w', newline='')
+	file = open('../Audio_Data.csv', 'w', newline='')
 	with file:
 		writer = csv.writer(file)
 		writer.writerow(header)
@@ -137,7 +137,7 @@ def creatData():
 				continue
 			to_append = filename+featureStr
 			to_append += f' {l}'
-			file = open('audiodata.csv', 'a', newline='')
+			file = open('../Audio_Data.csv', 'a', newline='')
 			with file:
 				writer = csv.writer(file)
 				writer.writerow(to_append.split())
@@ -171,7 +171,7 @@ def creatAudioDataSet():
 
 def train():
 	#reading a dataset
-	data = pd.read_csv('audiodata.csv')
+	data = pd.read_csv('../Audio_Data.csv')
 	data.head()
 	data = data.drop(['filename'],axis=1)
 	data.head()
