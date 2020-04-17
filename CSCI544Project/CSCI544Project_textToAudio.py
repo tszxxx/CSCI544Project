@@ -12,7 +12,7 @@ def get_text_to_audio(input_file_path, output_file_path):
                     id = record[0]
                     score = record[6]
                     a, b = divmod(cnt, 4)
-                    output_file.write(id + ',' + '/Audio_Data/' + id + '.mp4')
+                    output_file.write(id + ',' + 'Audio_Data/' + id + '.mp4')
                     for root_dir in segmentations_dirs:
                         file_path = root_dir + '/' + str(b) + '/' + score + '-' + id + '.txt'
                         output_file.write(',' + file_path)
