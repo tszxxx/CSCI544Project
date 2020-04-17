@@ -36,7 +36,7 @@ def getSegmentationDist(input_file_path, output_file_dir):
                 id = record[0]
                 score = record[6]
                 for root_dir in segmentations:
-                    a, b = divmod(cnt ,4)
+                    a, b = divmod(cnt, 4)
                     file_path = '../' + root_dir + '/' + str(b) + '/' + score + '-' + id + '.txt'
                     word_cnt = 0
                     with open(file_path, 'r', encoding='utf-8') as file:
