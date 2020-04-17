@@ -18,13 +18,13 @@ def get_text_to_audio(audio_file_path, input_file_path, output_file_path):
             cnt = 0
             segmentations_dirs = ['char_data', 'jieba_data', 'pku_data', 'snlp_data']
             spamreader = csv.reader(audio_file, delimiter=',', quotechar='\"')
-            output_file.write('id,audio_path,char_path,jieba_path,pku_path,snlp_path\n')
+            output_file.write('id,score,audio_path,char_path,jieba_path,pku_path,snlp_path\n')
             for record in spamreader:
                 if cnt > 0:
                     id = record[0].split('.')[0]
                     score = audio_dict[id]['score']
                     index = audio_dict[id]['index']
-                    output_file.write(id + ',' + 'Audio_Data/' + record[0])
+                    output_file.write(id + ',' + score + ',Audio_Data/' + record[0])
                     for root_dir in segmentations_dirs:
                         file_path = root_dir + '/' + str(index) + '/' + score + '-' + id + '.txt'
                         output_file.write(',' + file_path)
